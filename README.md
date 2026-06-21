@@ -1,2 +1,0 @@
-# loyalaw
-Loya Law
