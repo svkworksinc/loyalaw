@@ -225,6 +225,7 @@ h4 {
   cursor: pointer;
   transition: background .3s, border-color .3s;
   text-decoration: none;
+  white-space: nowrap;
 }
 .btn:hover { background: var(--hover); border-color: var(--hover); color: #fff; }
 .btn-outline {
