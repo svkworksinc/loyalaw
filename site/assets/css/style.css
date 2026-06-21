@@ -19,7 +19,7 @@
 
 /* --- Reset --- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 body {
   font-family: var(--font-body);
   font-size: clamp(1rem, 0.231vw + 0.94rem, 1.125rem);
@@ -28,6 +28,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 main { flex: 1; }
 img { max-width: 100%; height: auto; display: block; }
@@ -61,8 +62,14 @@ h4 {
   max-width: var(--container);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+/* Touch/tap optimizations */
+a, button, [role="button"], summary {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* =============================================
@@ -85,7 +92,7 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+  padding: .875rem clamp(1rem, 4vw, 2rem);
   max-width: 100%;
   margin: auto;
 }
@@ -164,6 +171,11 @@ h4 {
   border: none;
   cursor: pointer;
   padding: .5rem;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 .burger span {
   display: block;
@@ -179,13 +191,16 @@ h4 {
 
 /* Mobile nav */
 @media (max-width: 1023px) {
-  .burger { display: block; }
+  .burger { display: flex; }
   .main-nav {
     display: none;
     position: absolute;
     top: 100%; left: 0; right: 0;
     background: rgba(16, 31, 1, .97);
     padding: 1rem 1.25rem 1.5rem;
+    max-height: calc(100svh - 60px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .main-nav.open { display: block; }
   .main-nav ul { flex-direction: column; align-items: flex-start; gap: 0; }
@@ -286,6 +301,9 @@ h4 {
   margin-bottom: 1.75rem;
 }
 .hero-buttons { display: flex; flex-wrap: nowrap; gap: 1rem; align-items: center; }
+@media (max-width: 680px) {
+  .hero-buttons { flex-wrap: wrap; }
+}
 .hero-image {
   position: absolute;
   right: 3%;
@@ -321,7 +339,7 @@ h4 {
 /* =============================================
    SECTIONS - GENERAL
    ============================================= */
-section { padding: 5rem 0; }
+section { padding: clamp(3rem, 6vw, 5rem) 0; }
 .section-header { margin-bottom: 3rem; }
 .section-header h4 { margin-bottom: .5rem; }
 .section-header h2 { margin-bottom: 1rem; }
@@ -395,6 +413,7 @@ section { padding: 5rem 0; }
   aspect-ratio: 1.44/1;
   object-fit: cover;
   transition: transform .4s;
+  will-change: transform;
 }
 .area-card:hover .area-card-image img { transform: scale(1.1); }
 .area-card-label {
@@ -514,7 +533,7 @@ section { padding: 5rem 0; }
 }
 .testimonial-slide {
   min-width: 100%;
-  padding: 2.5rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
   background: rgba(255,255,255,.04);
   border-radius: .25rem;
   border: 1px solid rgba(255,255,255,.08);
@@ -616,7 +635,7 @@ section { padding: 5rem 0; }
    ============================================= */
 .site-footer { background: var(--primary); border-top: 1px solid rgba(255,255,255,.08); }
 .footer-top {
-  padding: 4rem 0 3rem;
+  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(2rem, 4vw, 3rem);
 }
 .footer-grid {
   display: grid;
@@ -678,7 +697,7 @@ section { padding: 5rem 0; }
    ============================================= */
 .page-hero {
   background: var(--primary);
-  padding: 8rem 0 4rem;
+  padding: clamp(5rem, 10vw, 8rem) 0 clamp(2.5rem, 4vw, 4rem);
   text-align: center;
 }
 .page-hero h1 { color: #fff; margin-bottom: .75rem; }
