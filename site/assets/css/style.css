@@ -288,17 +288,18 @@ h4 {
   position: absolute;
   right: 2rem;
   bottom: 0;
+  top: 0;
   z-index: 2;
   display: flex;
   align-items: flex-end;
+  pointer-events: none;
 }
 .hero-image img {
-  height: 68vh;
-  max-height: 640px;
-  min-height: 420px;
+  height: 100%;
   width: auto;
+  max-width: 600px;
   object-fit: contain;
-  object-position: bottom;
+  object-position: bottom center;
   display: block;
 }
 
@@ -356,7 +357,16 @@ section { padding: 5rem 0; }
    PRACTICE AREAS
    ============================================= */
 .practice-areas { background: var(--light); }
-.practice-areas .section-header { max-width: var(--container); margin-left: auto; margin-right: auto; padding-left: 1.25rem; padding-right: 1.25rem; margin-bottom: 2.5rem; }
+.practice-areas .section-header {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+.practice-areas .section-header p { max-width: 760px; margin-left: auto; margin-right: auto; }
 .areas-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -435,9 +445,10 @@ section { padding: 5rem 0; }
    OUR LAWYERS (HOMEPAGE)
    ============================================= */
 .our-lawyers-section { background: var(--primary); }
+.our-lawyers-section .section-header { text-align: center; }
 .our-lawyers-section .section-header h2,
 .our-lawyers-section .section-header p { color: #fff; }
-.our-lawyers-section .section-header p { color: rgba(255,255,255,.75); }
+.our-lawyers-section .section-header p { color: rgba(255,255,255,.75); max-width: 760px; margin-left: auto; margin-right: auto; }
 .lawyers-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
